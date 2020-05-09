@@ -1,0 +1,19 @@
+<li [ngClass]="{ 'alert': true,
+                  'list-group-item': true,
+                          'list-group-item-success': loveIts > 0 ,
+                          'list-group-item-danger': loveIts < 0
+                         }">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4>{{title}}</h4>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-right">{{created_at | date : 'short'}}</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <p>{{content}}</p>
+    <app-part-one-item [loveIt]="loveIts" (isLoved)="onClick($event)"></app-part-one-item>
+  </div>
+</li>
