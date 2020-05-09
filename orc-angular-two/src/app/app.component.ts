@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    // Ce n'est pas un best practice.. Juste pour l'intégration des service.
     this.appareils = this.appareilService.appareils;
   }
 
