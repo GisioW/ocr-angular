@@ -6,14 +6,17 @@ import { Injectable } from '@angular/core';
 export class AppareilServiceService {
   appareils = [
     {
+      id: 1,
       name: 'Télévision',
       status: 'allumé'
     },
     {
+      id: 2,
       name: 'Frigo',
       status: 'éteint'
     },
     {
+      id: 3,
       name: 'PC',
       status: 'allumé'
     }
@@ -41,5 +44,12 @@ export class AppareilServiceService {
   onSwitchOFF(index: number){
     this.appareils[index].status = 'éteint';
     console.log('onSwitchOFF ' + this.appareils[index].status);
+  }
+
+  getAppareilById(id: number) {
+    const appareil = this.appareils.find((s) => {
+      return s.id === id;
+    });
+    return appareil;
   }
 }

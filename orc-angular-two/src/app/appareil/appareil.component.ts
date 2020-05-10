@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AppareilServiceService} from '../appareil-service.service';
+import {AppareilServiceService} from '../services/appareil-service.service';
 
 @Component({
   selector: 'app-appareil',
@@ -11,6 +11,7 @@ export class AppareilComponent implements OnInit {
   @Input() name: string;
   @Input() status: string;
   @Input() index: number;
+  @Input() id: number;
 
   constructor(private appreilService: AppareilServiceService) { }
 

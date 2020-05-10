@@ -1,32 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AppareilServiceService} from './appareil-service.service';
+import {AppareilServiceService} from './services/appareil-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'Appareils';
-  appareils: any[];
+export class AppComponent {
 
-  constructor(private appareilService: AppareilServiceService) {
-  }
-
-  ngOnInit(): void {
-    // Ce n'est pas un best practice.. Juste pour l'intégration des service.
-    this.appareils = this.appareilService.appareils;
-  }
-
-  onSwitAllOn(): void{
-    this.appareilService.onSwithAllOn();
-  }
-
-  onSwitAllOff(): void{
-    if (confirm('Etes-vous sur de vouloir eteindre tous les appareils?')){
-      this.appareilService.onSwithAllOff();
-    } else {
-      return;
-    }
-  }
 }
