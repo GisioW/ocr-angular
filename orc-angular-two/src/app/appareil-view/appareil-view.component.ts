@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppareilServiceService} from '../services/appareil-service.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-appareil-view',
@@ -9,7 +10,7 @@ import {AppareilServiceService} from '../services/appareil-service.service';
 export class AppareilViewComponent implements OnInit {
   title = 'Appareils';
   appareils: any[];
-
+  appareilSubscription: Subscription;
   isAuth: false;
 
   constructor(private appareilService: AppareilServiceService) {
@@ -17,7 +18,12 @@ export class AppareilViewComponent implements OnInit {
 
   ngOnInit(): void {
     // Ce n'est pas un best practice.. Juste pour l'intégration des service.
-    this.appareils = this.appareilService.appareils;
+    this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+      (appareils) => {
+        this.appareils = appareils;
+      }
+    );
+    this.appareilService.emitAppareilSubject();
   }
 
   onSwitAllOn(): void{

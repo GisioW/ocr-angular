@@ -16,7 +16,6 @@ export class AppareilComponent implements OnInit {
   constructor(private appreilService: AppareilServiceService) { }
 
   ngOnInit(): void {
-    this.status = this.appreilService.appareils[this.index].status;
   }
 
   onSwitchOn(){
