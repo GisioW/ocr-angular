@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,9 @@ export class AppareilServiceService {
 
   appareilSubject = new Subject<any[]>();
 
-  private appareils = [
-    {
-      id: 1,
-      name: 'Télévision',
-      status: 'allumé'
-    },
-    {
-      id: 2,
-      name: 'Frigo',
-      status: 'éteint'
-    },
-    {
-      id: 3,
-      name: 'PC',
-      status: 'allumé'
-    }
-  ];
+  private appareils = [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   emitAppareilSubject(){
     this.appareilSubject.next(this.appareils.slice());
@@ -76,5 +61,31 @@ export class AppareilServiceService {
     appareil.id = this.appareils[(this.appareils.length - 1)].id + 1;
     this.appareils.push(appareil);
     this.emitAppareilSubject();
+  }
+
+  saveAppareilsToServer(){
+    this.httpClient.put('url', this.appareils)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé');
+        },
+        (error) => {
+          console.log('Erreur de sauvegarde');
+        }
+      );
+  }
+
+  getAppareilFromServer(){
+    this.httpClient.get<any[]>('url')
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          console.log('Recuperation de ' + JSON.stringify(this.appareils));
+          this.emitAppareilSubject();
+        },
+        (error) => {
+          console.log('Erreur de chargement');
+        }
+      );
   }
 }

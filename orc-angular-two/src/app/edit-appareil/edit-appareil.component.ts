@@ -24,5 +24,4 @@ export class EditAppareilComponent implements OnInit {
     this.router.navigate(['/appareils']);
   }
 
-
 }
