@@ -3,9 +3,8 @@
                 'list-group-item-danger': status === 'éteint'
                 }">
   <h4 [ngStyle]="{color: getColor()}">Appareil : {{name}} -- Statut : {{getStaus()}}</h4>
-  <input type="text" class="form-control" [(ngModel)]="name">
   <div class="container">
-    <button routerLink="{{id}}" class="btn btn-sm btn-info">
+    <button routerLink="{{id}}" class="btn btn-sm btn-outline-primary">
       Détail
     </button>
 

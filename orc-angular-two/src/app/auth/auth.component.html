@@ -3,7 +3,7 @@
   <button class="btn btn-outline-success m-2" *ngIf="!authStatus" (click)="onSignIn()">
     Se connecter
   </button>
-  <button class="btn btn-outline-success m-2" *ngIf="authStatus" (click)="onSingOut()">
+  <button class="btn btn-outline-danger m-2" *ngIf="authStatus" (click)="onSingOut()">
     Se déconnecter
   </button>
 </div>
